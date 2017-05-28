@@ -1,3 +1,14 @@
+<?php
+include("__config/core.php");
+
+# check login user
+$auth_login = new AuthLogin();
+$login = $auth_login->login();
+if($login == false)
+{
+	header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +33,9 @@
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="../navbar/">Login</a></li>
-        <li><a href="../navbar-static-top/">Signup</a></li>
+        <li><a href="login.php">Login</a></li>
+        <li><a href="signup.php">Signup</a></li>
         <li class="active"><a href="./">Guest <span class="sr-only">(current)</span></a></li>
       </ul>
     </div><!--/.nav-collapse -->

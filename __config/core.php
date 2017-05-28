@@ -38,14 +38,9 @@ class AuthLogin
 	protected $id;
 	protected $username;
 
-	protected $lock;
-
-	public function __construct($id, $username)
+	public function __construct()
 	{
 		# code...
-		$this->id = $id;
-		$this->username = $username;
-		$this->lock = false;
 	}
 
 	public function login()

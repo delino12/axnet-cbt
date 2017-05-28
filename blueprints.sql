@@ -6,6 +6,16 @@
 # Database name
 create database axnet_db;
 
+# create admin login table 
+create table admin(
+id int(11) auto_increment key,
+username varchar(255) not null,
+email varchar(255) not null,
+password varchar(255) not null,
+phone varchar(255) not null,
+date varchar(255) not null
+);
+
 # create cbt test 
 create table questions(
 id int(11) auto_increment key,
@@ -21,3 +31,4 @@ answers text not null,
 point varchar(255) not null,
 date varchar(255) not null
 );
+

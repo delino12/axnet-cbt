@@ -15,3 +15,8 @@ Thanks
 Dev: Delino
 
 Thanks.# axnet-cbt
+
+
+
+-------------Heroku--------------------------------
+https://guarded-lake-73730.herokuapp.com/ | https://git.heroku.com/guarded-lake-73730.git
