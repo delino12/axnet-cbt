@@ -17,13 +17,14 @@ class SetQuestions extends DBconnect
 	protected $optionC;
 	protected $optionD;
 	protected $optionE;
+	protected $user_id;
 
 	# date, point and image 
 	protected $date;
 	protected $point;
 	protected $image;
 
-	function __construct($question, $subject, $answers, $optionA, $optionB, $optionC, $optionD, $optionE)
+	function __construct($user_id, $question, $subject, $answers, $optionA, $optionB, $optionC, $optionD, $optionE)
 	{
 		# code...
 		parent::__construct();
@@ -39,6 +40,9 @@ class SetQuestions extends DBconnect
 		$this->optionD = $optionD;
 		$this->optionE = $optionE;
 
+		# user id
+		$this->user_id = $user_id;
+
 		# secondary data
 		$this->point = 10;
 		$this->date = time();
@@ -48,10 +52,11 @@ class SetQuestions extends DBconnect
 	{
 		# save questions to client database
 		$create_question = " INSERT INTO questions( ";
-		$create_question .= " question, subject, opt_a, opt_b, "; 
+		$create_question .= " user_id, question, subject, opt_a, opt_b, "; 
 		$create_question .= " opt_c, opt_d, opt_e,  ";
 		$create_question .= " answers, point, date )";
-		$create_question .= " VALUES('".$this->question."', '".$this->subject."', '".$this->optionA."','".$this->optionB."', ";
+		$create_question .= " VALUES('".$this->user_id."', '".$this->question."', ";
+		$create_question .= " '".$this->subject."', '".$this->optionA."','".$this->optionB."', ";
 		$create_question .= " '".$this->optionC."','".$this->optionD."','".$this->optionE."',  ";
 		$create_question .= " '".$this->answers."','".$this->point."','".$this->date."' )";
 		$create_question_query = mysqli_query($this->plug, $create_question);

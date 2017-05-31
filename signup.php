@@ -1,10 +1,18 @@
 <?php
 include("__config/core.php");
+
+# check login user
+$auth_login = new AuthLogin();
+$login = $auth_login->login();
+if($login == true)
+{
+	header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Question Bank</title>
+	<title>Axnet Signup</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
@@ -54,7 +62,7 @@ include("__config/core.php");
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Username</label>
-										<input type="text" id="username" class="form-control" name="" placeholder="username/email" required="">
+										<input type="text" id="username" class="form-control" name="" placeholder="username" required="">
 									</div>	
 								</div>
 							</div>
@@ -78,7 +86,7 @@ include("__config/core.php");
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Phone</label>
-										<input type="text" id="phone" pattern="[0-9^]" class="form-control" name="" placeholder="080XXXXX" required="">
+										<input type="text" id="phone" class="form-control" name="" placeholder="080XXXXX" required="">
 									</div>	
 								</div>
 							</div>
@@ -111,6 +119,7 @@ include("__config/core.php");
 								success: function (data)
 								{
 									$("#login-stat").html(data);
+									$("#signup-form").hide();
 								}
 							});
 							return false;

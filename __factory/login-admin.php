@@ -6,6 +6,9 @@ include("../__class/class.login_admin.php");
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 
+# encrypt password
+$password = md5(sha1($password));
+
 # login
-$login_admin = new LoginAdmin();
-$login_login->login();
+$login_admin = new LoginAdmin($username, $password);
+$login_admin->login();

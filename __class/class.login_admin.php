@@ -12,7 +12,7 @@ class LoginAdmin extends DBconnect
 	protected $username;
 	protected $password;
 
-	public function __construct()
+	public function __construct($username, $password)
 	{
 		# code...
 		parent::__construct();
@@ -22,11 +22,14 @@ class LoginAdmin extends DBconnect
 		$this->password = $password;
 	}
 
-	public function load()
+	public function login()
 	{
+		# check for username valid 
+
 		# load last questions
 		$login_admin = " SELECT * FROM admin WHERE ";
-		$login_admin = " (username = '".$this->username."' AND password = '".$this->password."') ";
+		$login_admin .= " (username = '".$this->username."' OR email ='".$this->username."' ";
+		$login_admin .= " AND password = '".$this->password."') ";
 		$login_admin_query = mysqli_query($this->plug, $login_admin);
 		if(!$login_admin_query)
 		{
@@ -42,6 +45,12 @@ class LoginAdmin extends DBconnect
 
 				$_SESSION['id'] = $id;
 				$_SESSION['username'] = $username;
+
+				echo '
+					<script>
+						window.location.reload();
+					</script>
+				';
 			}
 		}
 	}

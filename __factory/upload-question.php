@@ -13,9 +13,11 @@ $optionD = $_REQUEST['optionD'];
 $optionE = $_REQUEST['optionE'];
 $answer = $_REQUEST['answer'];
 
+# user_id
+$user_id = $_SESSION['id'];
 
 # create new questions 
-$create_questions = new SetQuestions($question, $subject, $answer, $optionA, $optionB, $optionC, $optionD, $optionE);
+$create_questions = new SetQuestions($user_id, $question, $subject, $answer, $optionA, $optionB, $optionC, $optionD, $optionE);
 $create_questions->create();
 
 ?>

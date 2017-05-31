@@ -1,10 +1,19 @@
 <?php
 include("__config/core.php");
+
+# check login user
+$auth_login = new AuthLogin();
+$login = $auth_login->login();
+if($login == true)
+{
+	header("Location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Question Bank</title>
+	<title>Axnet CBT Login</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery.js"></script>

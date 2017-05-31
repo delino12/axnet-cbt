@@ -8,6 +8,7 @@ $results = $load_last_question->load();
 if($results == "")
 {
 	$question = 'none';
+	$subject = 'none';
 	$opt_a = 'none';
 	$opt_b = 'none';
 	$opt_c = 'none';
@@ -49,9 +50,39 @@ if($results == "")
 			<li class="list-group-item"> E. <?= $opt_e; ?> </li>
 		</ul>
 		<div class="small">
-			<a href="" class="pull-right"><button class="btn btn-primary"><i class="fa fa-pencil"></i> delete</button></a>
-			<a href=""><button class="btn btn-primary"><i class="fa fa-edit"></i> edit </button></a>
-			<a href=""><button class="btn btn-primary"><i class="fa fa-edit"></i> add to queue </button></a>
+			<input type="hidden" value="<?php echo $id; ?>" id="question_id" name="">
+			<input type="hidden" value="<?php echo $subject; ?>" id="question_type" name="">
+			<a href="" class="pull-right"><button class="btn btn-primary"><i class="fa fa-pencil"></i> Delete</button></a>
+			<a href=""><button class="btn btn-primary"><i class="fa fa-edit"></i> Edit </button></a>
+			
+			<a href="javascript:void(0);" onclick="return addList()">
+				<button class="btn btn-primary"><i class="fa fa-edit"></i> Add to Queue </button>
+			</a>
+			<hr />
+			<div id="add-stat"></div>
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+	function addList()
+	{
+		var subjId = $("#question_id").val();
+		var subjType = $("#question_type").val();
+
+		// post to ajax set list
+		$.ajax({
+			type: "POST",
+			url: "__factory/add-list.php",
+			data: {
+				subjId:subjId,
+				subjType:subjType
+			},
+			cache: false,
+			success: function (data){
+				$("#add-stat").html(data);
+			}
+		});
+		return false;
+	}
+</script>
